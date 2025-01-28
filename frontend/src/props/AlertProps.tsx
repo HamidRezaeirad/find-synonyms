@@ -11,14 +11,10 @@ export interface AlertProps {
   alert: string | undefined;
 
   /**
-   * Callback function to be called when the alert fade timeout occurs.
+   * Callback function to be called when the alert close occurs.
    */
-  onFadeTimeout: () => void;
+  onCloseAlert: () => void;
 
-  /**
-   * Optional timeout duration in milliseconds before the alert fades out.
-   */
-  timeout?: number;
   /**
    * The type of alert to be displayed.
    */
