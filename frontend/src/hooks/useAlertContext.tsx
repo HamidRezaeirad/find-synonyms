@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { AlertContext } from "../contexts/AlertContext";
 
 export const useAlertContext = () => {
-  const AlertSate = useContext(AlertContext);
+  const alertContext = useContext(AlertContext);
 
-  if (AlertSate === undefined) {
+  if (alertContext === undefined) {
     throw new Error("Alert Conetxt is undefined");
   }
 
-  return { AlertSate };
+  return { ...alertContext };
 };

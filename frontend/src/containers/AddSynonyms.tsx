@@ -30,8 +30,7 @@ const AddSynonyms: React.FC = () => {
   const [wordError, setWordError] = useState<string | null>(null);
   const [synonymsError, setSynonymsError] = useState<string | null>(null);
 
-  const { AlertSate } = useAlertContext();
-  const { onSetAlert } = AlertSate;
+  const { onSetAlert } = useAlertContext();
 
   const { axiosRequest, error } = useAxios<{ success: boolean }>(
     "/synonyms/add"

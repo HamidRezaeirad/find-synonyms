@@ -38,8 +38,7 @@ const SearchSynonyms: React.FC = () => {
   const [lookupWord, setLookupWord] = useState<string>("");
   const [lookupLabel, setLookupLabel] = useState<string>("");
 
-  const { AlertSate } = useAlertContext();
-  const { onSetAlert } = AlertSate;
+  const { onSetAlert } = useAlertContext();
 
   const {
     data: lookupResults,

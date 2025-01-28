@@ -12,11 +12,9 @@ const mockUseAlertContext = (
   alerType?: AlertType
 ) => {
   vi.mocked(useAlertContext).mockReturnValue({
-    AlertSate: {
-      alert,
-      alerType,
-      onSetAlert: vi.fn(),
-    },
+    alert,
+    alerType,
+    onSetAlert: vi.fn(),
   });
 };
 
@@ -33,11 +31,9 @@ describe("FadeAlert Component", () => {
   it("calls onSetAlert with undefined when alert is closed", () => {
     const mockOnSetAlert = vi.fn();
     vi.mocked(useAlertContext).mockReturnValue({
-      AlertSate: {
-        alert: "Test Alert",
-        alerType: "warning",
-        onSetAlert: mockOnSetAlert,
-      },
+      alert: "Test Alert",
+      alerType: "warning",
+      onSetAlert: mockOnSetAlert,
     });
 
     render(<FadeAlert />);
