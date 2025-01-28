@@ -21,3 +21,8 @@ npm install
 
 - [Backend](./backend/README.md)
 - [Frontend](./frontend/README.md)
+
+## Deployment and Hosting
+
+This project has been deployed to AWS EC2 and is available at the following link:
+[http://awspractice.link/](http://awspractice.link/)
