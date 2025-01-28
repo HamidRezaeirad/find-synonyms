@@ -13,9 +13,7 @@ import { useAlertContext } from "../hooks/useAlertContext";
  */
 
 const FadeAlert: React.FC = () => {
-  const { AlertSate } = useAlertContext();
-
-  const { alert, onSetAlert, alerType } = AlertSate;
+  const { alert, onSetAlert, alerType } = useAlertContext();
 
   const onCloseAlert = () => {
     onSetAlert(undefined, alerType ? alerType : "success");
