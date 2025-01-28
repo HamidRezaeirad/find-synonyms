@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { SearchBar } from "../components";
+import { useAlertContext } from "../hooks/useAlertContext";
 import useAxios from "../hooks/useAxios";
 import { SynonymModel } from "../moodels";
-import { SearchSynonymsProps } from "../props";
 
 /**
  * `SearchSynonyms` is a React functional component that provides a user interface
@@ -34,9 +34,12 @@ import { SearchSynonymsProps } from "../props";
  *   <SearchSynonyms />
  * )
  */
-const SearchSynonyms: React.FC<SearchSynonymsProps> = ({ onSetAlert }) => {
+const SearchSynonyms: React.FC = () => {
   const [lookupWord, setLookupWord] = useState<string>("");
   const [lookupLabel, setLookupLabel] = useState<string>("");
+
+  const { AlertSate } = useAlertContext();
+  const { onSetAlert } = AlertSate;
 
   const {
     data: lookupResults,

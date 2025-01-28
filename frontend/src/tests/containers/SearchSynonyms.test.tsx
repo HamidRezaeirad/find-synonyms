@@ -1,12 +1,15 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { SearchSynonyms } from "../../containers";
+import { AlertProvider } from "../../Provides/AlertProvider";
 
 describe("SearchSynonyms", () => {
-  const mockOnSetAlert = vi.fn(String);
-
   beforeEach(() => {
-    render(<SearchSynonyms onSetAlert={mockOnSetAlert} />);
+    render(
+      <AlertProvider>
+        <SearchSynonyms />
+      </AlertProvider>
+    );
   });
 
   it("renders SearchSynonyms component", () => {
