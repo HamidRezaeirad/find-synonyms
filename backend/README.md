@@ -12,7 +12,7 @@ Implement a system that functions as a synonyms search tool with the following f
 - Users can request synonyms for a word, with lookup working bidirectionally. For example, if "wash" is a synonym for "clean", both words should return each other as synonyms.
 - Each word can have multiple synonyms, all of which should be returned upon request.
 - Use simple, fast data structures in the backend's memory for storage, with no persistence required.
-- Ensure the solution is implemented with production-quality code.
+- The solution is implemented with production-quality code.
 - Implement the transitive rule: if "B" is a synonym for "A" and "C" is a synonym for "B", then "C" should also be a synonym for "A".
 
 ## Technologies
@@ -83,7 +83,14 @@ npm install
 5. Run the application:
 
 ```bash
-npm start
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
 ```
 
 ## Usage
