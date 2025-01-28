@@ -93,7 +93,7 @@ $ npm run test
 
 ## Unit test
 
-<img src="./assets/fe-unit-test.png" width="500">
+<img src="./src/assets/fe-unit-test.png" width="500">
 
 3. Open your browser and navigate to `http://localhost:3001`.
 
