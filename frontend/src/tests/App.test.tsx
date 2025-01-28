@@ -30,14 +30,10 @@ describe("App Component", () => {
 
   test("displays alert message when setAlert is called", () => {
     render(<App />);
-    const searchSynonymsElement = screen
-      .getByTestId("searchBarInput")
-      .querySelector("input");
-    if (searchSynonymsElement) {
-      fireEvent.change(searchSynonymsElement, { target: { value: "test" } });
-      fireEvent.keyDown(searchSynonymsElement, { key: "Enter", code: "Enter" });
-      const resultsElement = screen.queryByText("Results for test");
-      expect(resultsElement).toBeInTheDocument();
-    }
+    const searchSynonymsElement = screen.getByTestId("searchBarInput");
+    fireEvent.change(searchSynonymsElement, { target: { value: "test" } });
+    fireEvent.keyDown(searchSynonymsElement, { key: "Enter", code: "Enter" });
+    const resultsElement = screen.queryByText("Results for test");
+    expect(resultsElement).toBeInTheDocument();
   });
 });
