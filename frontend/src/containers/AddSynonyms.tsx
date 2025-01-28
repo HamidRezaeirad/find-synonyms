@@ -10,7 +10,6 @@ import useAxios from "../hooks/useAxios";
  * and sends a request to add the synonyms to the server.
  *
  * @component
- * @param {AddSynonymsProps} props - The props for the AddSynonyms component.
  * @param {function} props.onSetAlert - Function to set alert messages.
  *
  * @returns {JSX.Element} The rendered AddSynonyms component.

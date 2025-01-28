@@ -35,10 +35,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
       }}
     >
       <InputBase
-        data-testid="searchBarInput"
         sx={{ ml: 1, flex: 1 }}
         placeholder="Search for a word..."
-        inputProps={{ "aria-label": "search for aword..." }}
+        inputProps={{
+          "data-testid": "searchBarInput",
+          "aria-label": "search for aword...",
+        }}
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
