@@ -30,7 +30,7 @@ export default function Navbar() {
         <AppBar
           position="static"
           sx={{
-            border: "1px solid #E8E9ED",
+            borderBottom: "1px solid #E8E9ED",
             bgcolor: "white",
             color: "black",
           }}
