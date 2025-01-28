@@ -1,8 +1,8 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { TagInput } from "../components";
+import { useAlertContext } from "../hooks/useAlertContext";
 import useAxios from "../hooks/useAxios";
-import { AddSynonymsProps } from "../props";
 
 /**
  * AddSynonyms component allows users to add a new word along with its synonyms.
@@ -23,12 +23,15 @@ import { AddSynonymsProps } from "../props";
  * to add the synonyms. It also includes validation for the word and synonyms
  * before sending the request.
  */
-const AddSynonyms: React.FC<AddSynonymsProps> = ({ onSetAlert }) => {
+const AddSynonyms: React.FC = () => {
   const [word, setWord] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
   const [synonyms, setSynonyms] = useState<string[]>([]);
   const [wordError, setWordError] = useState<string | null>(null);
   const [synonymsError, setSynonymsError] = useState<string | null>(null);
+
+  const { AlertSate } = useAlertContext();
+  const { onSetAlert } = AlertSate;
 
   const { axiosRequest, error } = useAxios<{ success: boolean }>(
     "/synonyms/add"

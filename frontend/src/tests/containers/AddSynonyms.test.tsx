@@ -1,12 +1,15 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import AddSynonyms from "../../containers/AddSynonyms";
+import { AlertProvider } from "../../Provides/AlertProvider";
 
 describe("AddSynonyms Component", () => {
-  const mockOnSetAlert = vi.fn(String);
-
   beforeEach(() => {
-    render(<AddSynonyms onSetAlert={mockOnSetAlert} />);
+    render(
+      <AlertProvider>
+        <AddSynonyms />
+      </AlertProvider>
+    );
   });
 
   it("renders the component correctly", () => {

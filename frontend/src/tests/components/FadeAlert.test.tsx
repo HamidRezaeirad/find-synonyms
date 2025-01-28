@@ -1,24 +1,58 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
+import FadeAlert from "../../components/FadeAlert";
+import { useAlertContext } from "../../hooks/useAlertContext";
+import { AlertType } from "../../types/alertType";
 
-import { FadeAlert } from "../../components";
+vi.mock("../../hooks/useAlertContext");
+
+// Mock the `useAlertContext` implementation
+const mockUseAlertContext = (
+  alert: string | undefined,
+  alerType?: AlertType
+) => {
+  vi.mocked(useAlertContext).mockReturnValue({
+    AlertSate: {
+      alert,
+      alerType,
+      onSetAlert: vi.fn(),
+    },
+  });
+};
 
 describe("FadeAlert Component", () => {
-  it("renders the alert message when alert is defined", () => {
-    render(<FadeAlert alert="Test Alert" onCloseAlert={vi.fn()} />);
-    expect(screen.getByText("Test Alert")).toBeInTheDocument();
+  it("renders alert when alert is set", () => {
+    mockUseAlertContext("Test Alert", "error");
+    render(<FadeAlert />);
+
+    const alert = screen.getByTestId("alert");
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Test Alert");
   });
 
-  it("does not render the alert message when alert is undefined", () => {
-    render(<FadeAlert alert={undefined} onCloseAlert={vi.fn()} />);
-    expect(screen.queryByText("Test Alert")).not.toBeInTheDocument();
-  });
+  it("calls onSetAlert with undefined when alert is closed", () => {
+    const mockOnSetAlert = vi.fn();
+    vi.mocked(useAlertContext).mockReturnValue({
+      AlertSate: {
+        alert: "Test Alert",
+        alerType: "warning",
+        onSetAlert: mockOnSetAlert,
+      },
+    });
 
-  it("calls onCloseAlert after click close button", () => {
-    const onCloseAlertMock = vi.fn();
-    render(<FadeAlert alert="Test Alert" onCloseAlert={onCloseAlertMock} />);
+    render(<FadeAlert />);
+
     const closeButton = screen.getByRole("button", { name: /close/i });
-    closeButton.click();
-    expect(onCloseAlertMock).toHaveBeenCalled();
+    fireEvent.click(closeButton);
+
+    expect(mockOnSetAlert).toHaveBeenCalledWith(undefined, "warning");
+  });
+
+  it("renders alert when alert is set not alertType not set", () => {
+    mockUseAlertContext("Test Alert");
+    render(<FadeAlert />);
+
+    const alert = screen.getByTestId("alert");
+    expect(alert).toBeInTheDocument();
   });
 });
