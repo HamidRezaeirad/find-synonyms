@@ -5,31 +5,20 @@ import { FadeAlert } from "../../components";
 
 describe("FadeAlert Component", () => {
   it("renders the alert message when alert is defined", () => {
-    render(
-      <FadeAlert alert="Test Alert" onFadeTimeout={vi.fn()} timeout={3000} />
-    );
+    render(<FadeAlert alert="Test Alert" onCloseAlert={vi.fn()} />);
     expect(screen.getByText("Test Alert")).toBeInTheDocument();
   });
 
   it("does not render the alert message when alert is undefined", () => {
-    render(
-      <FadeAlert alert={undefined} onFadeTimeout={vi.fn()} timeout={3000} />
-    );
+    render(<FadeAlert alert={undefined} onCloseAlert={vi.fn()} />);
     expect(screen.queryByText("Test Alert")).not.toBeInTheDocument();
   });
 
-  it("calls onFadeTimeout after the specified timeout", () => {
-    vi.useFakeTimers();
-    const onFadeTimeoutMock = vi.fn();
-    render(
-      <FadeAlert
-        alert="Test Alert"
-        onFadeTimeout={onFadeTimeoutMock}
-        timeout={3000}
-      />
-    );
-    vi.advanceTimersByTime(3000);
-    expect(onFadeTimeoutMock).toHaveBeenCalled();
-    vi.useRealTimers();
+  it("calls onCloseAlert after click close button", () => {
+    const onCloseAlertMock = vi.fn();
+    render(<FadeAlert alert="Test Alert" onCloseAlert={onCloseAlertMock} />);
+    const closeButton = screen.getByRole("button", { name: /close/i });
+    closeButton.click();
+    expect(onCloseAlertMock).toHaveBeenCalled();
   });
 });

@@ -8,7 +8,7 @@ const App: React.FC = () => {
   const [alert, setAlert] = useState<string | undefined>(undefined);
   const [alerType, setAlertType] = useState<AlertType | undefined>(undefined);
 
-  const onFadeTimeoutHandler = () => {
+  const onCloseAlertHandler = () => {
     setAlert(undefined);
   };
 
@@ -22,11 +22,10 @@ const App: React.FC = () => {
       <Grid2 size={12}>
         <Navbar />
       </Grid2>
-      <Grid2 size={6} sx={{ p: 2, maxWidth: 400, margin: "auto" }}>
+      <Grid2 size={6} sx={{ p: 2, maxWidth: 500, margin: "auto" }}>
         <FadeAlert
           alert={alert}
-          onFadeTimeout={onFadeTimeoutHandler}
-          timeout={3000}
+          onCloseAlert={onCloseAlertHandler}
           alerType={alerType}
         />
       </Grid2>

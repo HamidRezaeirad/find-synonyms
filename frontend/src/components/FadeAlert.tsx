@@ -7,35 +7,20 @@ import { AlertProps } from "../props";
  *
  * @param {AlertProps} props - The properties passed to the component.
  * @param {string} props.alert - The alert message to be displayed.
- * @param {function} props.onFadeTimeout - The callback function to be called based on props.timeout to fade-out animation.
- * @param {number} props.timeout - The duration (in milliseconds) for which the alert should be displayed before triggering the fade-out animation.
+ * @param {function} props.CloseAlert - The callback function to be called to close Alert.
  * @param {AlertType|undefined} props.alerType - The type of alert to be displayed.
  *
  * @returns {JSX.Element} The rendered `FadeAlert` component.
  */
-const FadeAlert: React.FC<AlertProps> = ({
-  alert,
-  onFadeTimeout,
-  timeout,
-  alerType,
-}) => {
+const FadeAlert: React.FC<AlertProps> = ({ alert, onCloseAlert, alerType }) => {
   return (
     <>
-      <Fade
-        in={alert !== undefined}
-        timeout={{ enter: 1000, exit: 1000 }}
-        addEndListener={() => {
-          if (timeout != null) {
-            setTimeout(() => {
-              onFadeTimeout();
-            }, timeout);
-          }
-        }}
-      >
+      <Fade in={alert !== undefined} timeout={{ enter: 1000, exit: 1000 }}>
         <Alert
           data-testid="alert"
           severity={alerType ?? "success"}
           variant="standard"
+          onClose={onCloseAlert}
         >
           {alert}
         </Alert>
