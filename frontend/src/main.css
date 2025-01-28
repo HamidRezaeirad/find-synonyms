@@ -1,0 +1,14 @@
+/* Add your CSS code here */
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #F9FAFB;
+  font-family: Inter !important
+}
+
+.bg-color{
+  background-color: #F9FAFB  !important;
+}
+ 
+ 
